@@ -2,26 +2,19 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MeuApp());
+  runApp(const KGpsLocatorApp());
 }
 
-enum Visibilidade {
-  publico,
-  privado,
-}
-
-class MeuApp extends StatelessWidget {
-  const MeuApp({super.key});
+class KGpsLocatorApp extends StatelessWidget {
+  const KGpsLocatorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Agendamento de Evento',
       debugShowCheckedModeBanner: false,
+      title: 'kGPS-Locator',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
-        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: const AgendamentoEventoTela(),
