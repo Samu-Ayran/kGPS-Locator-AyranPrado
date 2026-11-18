@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'models/waypoint.dart';
+import 'widgets/compass.dart';
 
 void main() {
   runApp(const KGpsLocatorApp());
@@ -118,8 +120,8 @@ class _HomePageState extends State<HomePage> {
             label: const Text('Add Waypoint'),
           ),
         ),
-    );
-  }
+      );
+    }
 
   Widget _buildLocationInfo() {
     return Padding(
@@ -140,30 +142,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildNavigationInfo() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Card(
-        color: Colors.blue.shade50,
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            children: [
-              Text(
-                'Navegando para: ${navegandoPara!.nome}',
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              _infoRow('Latitude', '${navegandoPara!.latitude.toStringAsFixed(6)}°'),
-              _infoRow('Longitude', '${navegandoPara!.longitude.toStringAsFixed(6)}°'),
-              _infoRow('Altitude', '${navegandoPara!.altitude.toStringAsFixed(1)} m'),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavigationInfo() {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Padding(
@@ -172,15 +150,17 @@ class _HomePageState extends State<HomePage> {
           children: [
             const Text(
               'NAVEGANDO PARA',
-              //Parei aqui 21/10/26
-            )
-          ]
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4),
+            const Text('Azimute: --°  Distância: --m'),
+          ],
         ),
       ),
     );
   }
 
-    Widget _buildWayPointList() {
+    Widget _buildWaypointList() {
       return ListView.builder(
         itemCount: waypoints.length,
         itemBuilder: (context, index) {
