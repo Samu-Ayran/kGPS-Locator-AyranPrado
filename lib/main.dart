@@ -180,6 +180,52 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+    Widget _buildWayPointList() {
+      return ListView.builder(
+        itemCount: waypoints.length,
+        itemBuilder: (context, index) {
+          final waypoint = waypoints[index];
+          return Dismissible(
+            key: ValueKey(waypoint.nome),
+            direction: DismissDirection.endToStart,
+            background: Container(
+              alignment: Alignment.centerRight,
+              padding: const EdgeInsets.only(right: 20),
+              child: const Icon(Icons.delete, size: 30),
+            ),
+              onDismissed: (_) {
+                excluirWaypoint(waypoint);
+              },
+            child: ListTile(
+              leading: const Icon(Icons.location_on),
+              title: Text(waypoint.nome),
+              subtitle: Text(
+                '${waypoint.latitude.toStringAsFixed(6)}, ' 
+                '${waypoint.longitude.toStringAsFixed(6)}, '
+              ),
+              onLongPress: () {
+                navegarPara(waypoint);
+              },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _infoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text(value),
+        ],
+      ),
+    );
+  }
 }
-// Inicialização do Projeto Flutter
+
+
+
 
